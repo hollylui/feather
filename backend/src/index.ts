@@ -8,13 +8,14 @@ import { Mutation } from "./graphql/resolvers/Mutation";
 import { policy } from "./database/policy";
 import { insuranceType } from "./database/insuranceType";
 import { customers } from "./database/customers";
+import { status } from "./database/status";
 
 // ----------------------------------------------------------
 
 const server = new ApolloServer({
   typeDefs,
   resolvers: { Query, Mutation },
-  context: { policy, insuranceType, customers },
+  context: { policy, insuranceType, customers, status },
 });
 
 server.listen().then(({ url }) => {

@@ -1,10 +1,10 @@
 export const Mutation = {
-  updateInsuranceType: (
+  editInsuranceType: (
     parent,
-    { id, liability, household, health },
+    { slug, liability, household, health },
     { insuranceType }
   ) => {
-    let index = insuranceType.findIndex((insurance) => insurance.id === id);
+    let index = insuranceType.findIndex((insurance) => insurance.slug === slug);
     const updateInsuranceType = insuranceType[index];
 
     updateInsuranceType.liability = liability;
@@ -12,12 +12,12 @@ export const Mutation = {
     updateInsuranceType.health = health;
 
     return updateInsuranceType;
-    console.log(updateInsuranceType);
-    console.log(insuranceType);
   },
-  updateCusotmer: (parent, { id, firstName, lastName }, { customers }) => {
-    let index = customers.findIndex((customer) => customer.id === id);
-    customers[index].firstName = firstName;
-    customers[index].lastName = lastName;
+  editCustomer: (parent, { slug, firstName, lastName }, { customers }) => {
+    let index = customers.findIndex((customer) => customer.slug === slug);
+    const updateCustomer = customers[index];
+    updateCustomer.firstName = firstName;
+    updateCustomer.lastName = lastName;
+    return updateCustomer;
   },
 };

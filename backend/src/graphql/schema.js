@@ -6,6 +6,7 @@ export const typeDefs = gql`
     firstName: String!
     lastName: String!
     dateOfBirth: String!
+    slug: String!
   }
 
   type InsuranceType {
@@ -13,6 +14,7 @@ export const typeDefs = gql`
     liability: Boolean
     household: Boolean
     health: Boolean
+    slug: String!
   }
 
   type Status {
@@ -21,6 +23,7 @@ export const typeDefs = gql`
     cancelled: Boolean
     pending: Boolean
     droppedOut: Boolean
+    slug: String!
   }
 
   type Policy {
@@ -39,16 +42,17 @@ export const typeDefs = gql`
     policy: [Policy]
     insuranceType: [InsuranceType]
     customers: [Customer]
+    status: [Status]
   }
 
   type Mutation {
-    updateInsuranceType(
-      id: ID!
+    editInsuranceType(
+      slug: String!
       liability: Boolean!
       household: Boolean!
       health: Boolean!
     ): InsuranceType
 
-    updateCusotmer(id: ID!, firstName: String!, lastName: String!): Customer
+    editCustomer(slug: String!, firstName: String!, lastName: String!): Customer
   }
 `;
