@@ -1,5 +1,7 @@
 .container {
-  width: 250px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
   background-color: #00a2ff;
   border-radius: 10px;
   padding: 10px 0;
@@ -12,10 +14,22 @@
   padding: 0 10px;
 }
 
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
   margin: 5px 0;
+}
+
+button {
+  width: 100px;
+  background-color: aqua;
+  border-radius: 5px;
+  margin: 0 5px;
 }
 
 .edit {
@@ -26,15 +40,9 @@
   font-weight: 700;
 }
 
-label {
-  text-align: left;
-  margin-bottom: 2px;
-}
-
 input {
   background-color: antiquewhite;
   border-radius: 5px;
-  text-indent: 10px;
-  margin: 0 0 5px 0;
-  height: 30px;
+  text-indent: 5px;
+  margin: 5px;
 }

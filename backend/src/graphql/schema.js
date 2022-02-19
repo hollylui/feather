@@ -48,9 +48,9 @@ export const typeDefs = gql`
   type Mutation {
     editInsuranceType(
       slug: String!
-      liability: Boolean!
-      household: Boolean!
-      health: Boolean!
+      liability: Boolean
+      household: Boolean
+      health: Boolean
     ): InsuranceType
 
     editCustomer(slug: String!, firstName: String!, lastName: String!): Customer

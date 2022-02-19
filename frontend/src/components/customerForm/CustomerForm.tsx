@@ -41,23 +41,25 @@ export default function CustomerForm() {
   return (
     <div className={styles.container}>
       {customerForm && (
-        <form
-          action=""
-          onSubmit={customerSubmitHandler}
-          className={styles.form}
-        >
+        <form onSubmit={customerSubmitHandler} className={styles.form}>
           <label htmlFor="slug">Policy Number</label>
           <input type="text" id="slug" name="slug" required />
           <label htmlFor="fname">New First Name</label>
           <input type="text" id="newFirstName" name="newFirstName" required />
           <label htmlFor="lname">New Last Name</label>
           <input type="text" id="newLastNname" name="newLastNname" required />
-          <button type="submit">Edit</button>
+          <div className={styles.buttons}>
+            <button type="submit">Edit</button>
+            <button onClick={editCustomerHanlder}>Close</button>
+          </div>
         </form>
       )}
-      <button onClick={editCustomerHanlder}>
-        {customerForm ? "Close Customer Info" : "Edit Customer Info"}
-      </button>
+
+      {!customerForm && (
+        <button className={styles.edit} onClick={editCustomerHanlder}>
+          Edit Customer Info
+        </button>
+      )}
     </div>
   );
 }
