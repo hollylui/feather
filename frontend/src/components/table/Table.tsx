@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 // import styles from "./Table.module.css";
 
 let tableElement: any;
-
+let newData: any;
 export default function Table({ data }: any) {
   let ascValue: any;
+
   const [ascCustomer, setAscCustomer] = useState(false);
   const [ascProvider, setAscProvider] = useState(false);
   const [ascStatus, setAscStatus] = useState(false);
@@ -16,6 +17,9 @@ export default function Table({ data }: any) {
   const [ascStartDate, setAscStartDate] = useState(false);
   const [ascEndDate, setAscEndDate] = useState(false);
   const [ascCreateAt, setAscCreateAt] = useState(false);
+
+  const limit = data.policy.length;
+  const [skip, setSkip] = useState(0);
 
   //styles
   const thStyles = "py-3 px-6 text-left font-medium tracking-wider uppercase";
@@ -91,9 +95,25 @@ export default function Table({ data }: any) {
     tableElement = document.getElementById("table");
   }, []);
 
+  //pagniation
+  newData = data.policy.slice(skip, skip + 5);
+  const skipForwardHandler = () => {
+    if (skip <= limit) {
+      setSkip(skip + 5);
+    }
+  };
+  const skipBackwardHandler = () => {
+    if (skip >= 0) {
+      setSkip(skip - 5);
+    }
+  };
+
+  useEffect(() => {
+    newData = data.policy.slice(skip, skip + 5);
+  }, [skip]);
+
   return (
     <div>
-      <p id="p">Hello</p>
       <table
         id="table"
         className="m-auto bg-yellow-400 rounded-2xl table-sortable"
@@ -127,7 +147,7 @@ export default function Table({ data }: any) {
           </tr>
         </thead>
         <tbody>
-          {data.policy.map((info: any) => {
+          {newData.map((info: any) => {
             return (
               <tr>
                 {/* customer info ------------------------------------*/}
@@ -185,6 +205,8 @@ export default function Table({ data }: any) {
           })}
         </tbody>
       </table>
+      <button onClick={skipBackwardHandler}>Previous</button>
+      <button onClick={skipForwardHandler}>Next</button>
     </div>
   );
 }
