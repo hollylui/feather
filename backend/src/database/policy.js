@@ -1,13 +1,20 @@
+import { insuranceType } from "./insuranceType";
+import { customers } from "./customers";
+
 export const policy = [
   {
     id: "1",
-    customer: [
-      { firstName: "Holly1", lastName: "Lui1", dateOfBirth: "818031600000" },
-    ],
+    customer: [customers[0]],
     provider: "AXA",
-    insuranceType: [{ liability: true, household: true, health: false }],
+    insuranceType: [insuranceType[0]],
     status: [
-      { active: true, cancelled: false, pending: false, droppedOut: false },
+      {
+        id: "1",
+        active: true,
+        cancelled: false,
+        pending: false,
+        droppedOut: false,
+      },
     ],
     policyNumber: "1111",
     startDate: "1597960800000",
@@ -16,13 +23,17 @@ export const policy = [
   },
   {
     id: "2",
-    customer: [
-      { firstName: "Holly2", lastName: "Lui2", dateOfBirth: "965080800000" },
-    ],
+    customer: [customers[1]],
     provider: "Allianz",
-    insuranceType: [{ liability: true, household: false, health: false }],
+    insuranceType: [insuranceType[1]],
     status: [
-      { active: false, cancelled: true, pending: false, droppedOut: false },
+      {
+        id: "2",
+        active: false,
+        cancelled: true,
+        pending: false,
+        droppedOut: false,
+      },
     ],
     policyNumber: "2222",
     startDate: "1315605600000",
@@ -31,13 +42,17 @@ export const policy = [
   },
   {
     id: "3",
-    customer: [
-      { firstName: "Holly3", lastName: "Lui3", dateOfBirth: "160700400000" },
-    ],
+    customer: [customers[2]],
     provider: "TK",
-    insuranceType: [{ liability: true, household: false, health: false }],
+    insuranceType: [insuranceType[2]],
     status: [
-      { active: false, cancelled: false, pending: true, droppedOut: false },
+      {
+        id: "3",
+        active: false,
+        cancelled: false,
+        pending: true,
+        droppedOut: false,
+      },
     ],
     policyNumber: "3333",
     startDate: "1643670000000",
@@ -46,13 +61,17 @@ export const policy = [
   },
   {
     id: "4",
-    customer: [
-      { firstName: "Holly4", lastName: "Lui4", dateOfBirth: "933285600000" },
-    ],
+    customer: [customers[3]],
     provider: "AOK",
-    insuranceType: [{ liability: false, household: true, health: false }],
+    insuranceType: [insuranceType[3]],
     status: [
-      { active: false, cancelled: false, pending: false, droppedOut: true },
+      {
+        id: "4",
+        active: false,
+        cancelled: false,
+        pending: false,
+        droppedOut: true,
+      },
     ],
     policyNumber: "4444",
     startDate: "1639177200000",
