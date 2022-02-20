@@ -1,0 +1,9 @@
+.container {
+  width: 1250px;
+}
+
+.controlBtns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

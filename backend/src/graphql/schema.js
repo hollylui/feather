@@ -49,6 +49,7 @@ export const typeDefs = gql`
   }
 
   input PolicyInputFilter {
+    id: ID
     customer: String
     provider: String
     insuranceType: String

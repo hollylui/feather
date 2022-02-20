@@ -6,5 +6,5 @@
 // import styles from "./Landing.module.css";
 
 export default function Landing() {
-  return;
+  return <div>Landing</div>;
 }

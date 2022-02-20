@@ -24,6 +24,7 @@ export default function CustomerForm() {
   const customerSubmitHandler = (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+
     const editData = {
       slug: formData.get("slug"),
       firstName: formData.get("newFirstName"),
@@ -37,6 +38,8 @@ export default function CustomerForm() {
         lastName: editData.lastName,
       },
     });
+
+    setCustomerForm(!customerForm);
   };
   return (
     <div className={styles.container}>
@@ -44,13 +47,21 @@ export default function CustomerForm() {
         <form onSubmit={customerSubmitHandler} className={styles.form}>
           <label htmlFor="slug">Policy Number</label>
           <input type="text" id="slug" name="slug" required />
+
           <label htmlFor="fname">New First Name</label>
           <input type="text" id="newFirstName" name="newFirstName" required />
+
           <label htmlFor="lname">New Last Name</label>
           <input type="text" id="newLastNname" name="newLastNname" required />
+
           <div className={styles.buttons}>
-            <button type="submit">Edit</button>
-            <button onClick={editCustomerHanlder}>Close</button>
+            <button className={styles.button} type="submit">
+              Edit
+            </button>
+
+            <button className={styles.button} onClick={editCustomerHanlder}>
+              Close
+            </button>
           </div>
         </form>
       )}

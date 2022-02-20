@@ -2,13 +2,13 @@
 import { useEffect, useState } from "react";
 
 //! Styles
-// import styles from "./Table.module.css";
+import styles from "./Table.module.css";
 
 let tableElement: any;
 let newData: any;
-export default function Table({ data }: any) {
-  let ascValue: any;
+let ascValue: any;
 
+export default function Table({ allData }: any) {
   const [ascCustomer, setAscCustomer] = useState(false);
   const [ascProvider, setAscProvider] = useState(false);
   const [ascStatus, setAscStatus] = useState(false);
@@ -17,25 +17,22 @@ export default function Table({ data }: any) {
   const [ascStartDate, setAscStartDate] = useState(false);
   const [ascEndDate, setAscEndDate] = useState(false);
   const [ascCreateAt, setAscCreateAt] = useState(false);
-
-  const limit = data.policy.length;
   const [skip, setSkip] = useState(0);
+  const [search, setSearch] = useState("");
 
-  //styles
-  const thStyles = "py-3 px-6 text-left font-medium tracking-wider uppercase";
-  const tdStyles = "py-3 px-6 text-left font-medium tracking-wider align-top";
+  const limit = allData.policy.length;
 
+  // Sort each column----------------------------------------------------
   function sortTableByColumn(table: any, column: any, asc = true) {
     const dirModifier = asc ? 1 : -1;
     const tBody = table.tBodies[0];
     const rows = Array.from(tBody.querySelectorAll("tr"));
 
-    // Sort each row
-    const sortedRows = rows.sort((a: any, b: any): any => {
-      const aColText = a
+    const sortedRows = rows.sort((first: any, second: any): any => {
+      const aColText = first
         .querySelector(`td:nth-child(${column + 1})`)
         .textContent.trim();
-      const bColText = b
+      const bColText = second
         .querySelector(`td:nth-child(${column + 1})`)
         .textContent.trim();
       return aColText > bColText ? 1 * dirModifier : -1 * dirModifier;
@@ -91,32 +88,73 @@ export default function Table({ data }: any) {
     sortTableByColumn(tableElement, index, ascValue);
   };
 
+  //pagniation --------------------------------------------------------
+  newData = allData.policy.slice(skip, skip + 4);
+  const skipForwardHandler = () => {
+    if (skip <= limit) setSkip(skip + 4);
+  };
+
+  const skipBackwardHandler = () => {
+    if (skip >= 0) setSkip(skip - 4);
+  };
+
+  // search text -------------------------------------------------
+  const filterPolicyHandler = (e: any) => {
+    setSearch(e.target.value);
+  };
+
+  // useEffect ------------------------------------------------------
+
+  useEffect(() => {
+    newData = allData.policy.filter((data: any) =>
+      data.customer[0].firstName.toLowerCase().includes(search)
+    );
+
+    // setData(newData);
+  }, [search]);
+
   useEffect(() => {
     tableElement = document.getElementById("table");
-  }, []);
-
-  //pagniation
-  newData = data.policy.slice(skip, skip + 5);
-  const skipForwardHandler = () => {
-    if (skip <= limit) {
-      setSkip(skip + 5);
-    }
-  };
-  const skipBackwardHandler = () => {
-    if (skip >= 0) {
-      setSkip(skip - 5);
-    }
-  };
-
-  useEffect(() => {
-    newData = data.policy.slice(skip, skip + 5);
+    newData = allData.policy.slice(skip, skip + 4);
   }, [skip]);
 
+  //styles
+  const thStyles = "py-3 px-6 text-left font-bold tracking-wider uppercase";
+  const tdStyles = "py-3 px-6 text-left font-medium tracking-wider align-top";
+  const searchBtnSyltes = "tracking-wider uppercase font-bold mx-2";
+  const paginationBtnStyles =
+    "font-bold tracking-wider uppercase bg-yellow-400 mx-3 py-1 px-3 w-30";
+
   return (
-    <div>
+    <div className={`m-auto ${styles.container}`}>
+      <div className={styles.controlBtns}>
+        <span>
+          <label className={searchBtnSyltes}>Search</label>
+          <input type="text" onChange={filterPolicyHandler} />
+        </span>
+        <span>
+          {skip !== 0 && (
+            <button
+              className={paginationBtnStyles}
+              onClick={skipBackwardHandler}
+            >
+              &larr; Prev
+            </button>
+          )}
+          {limit - skip > skip && (
+            <button
+              className={paginationBtnStyles}
+              onClick={skipForwardHandler}
+            >
+              Next &rarr;
+            </button>
+          )}
+        </span>
+      </div>
+
       <table
         id="table"
-        className="m-auto bg-yellow-400 rounded-2xl table-sortable"
+        className="m-auto  bg-yellow-400 rounded-2xl table-sortable"
       >
         <thead className="bg-yellow-200 dark:bg-gray-700l">
           <tr>
@@ -147,9 +185,9 @@ export default function Table({ data }: any) {
           </tr>
         </thead>
         <tbody>
-          {newData.map((info: any) => {
+          {newData.map((info: any, index: any) => {
             return (
-              <tr>
+              <tr key={index}>
                 {/* customer info ------------------------------------*/}
                 <td className={tdStyles}>
                   {info.customer[0].firstName} {info.customer[0].lastName}
@@ -205,8 +243,6 @@ export default function Table({ data }: any) {
           })}
         </tbody>
       </table>
-      <button onClick={skipBackwardHandler}>Previous</button>
-      <button onClick={skipForwardHandler}>Next</button>
     </div>
   );
 }

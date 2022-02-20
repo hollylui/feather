@@ -13,16 +13,13 @@ export const Query = {
     return album;
   },
   policyFilter: (parent, args, { policy }) => {
-    let filterCustomer = policy.filter((data) => {
-      console.log(args);
-      console.log(data.customer[0].firstName);
-
+    let customer = policy.filter((data) => {
       const filterData = data.customer[0].firstName
         .toLowerCase()
         .includes(args.input.customer);
       return filterData;
     });
 
-    return filterCustomer;
+    return customer;
   },
 };

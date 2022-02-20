@@ -73,8 +73,15 @@ export default function InsuranceTypeForm() {
             <label htmlFor="">Health</label>
           </div>
           <div className={styles.buttons}>
-            <button type="submit">Edit</button>
-            <button onClick={editInsuranceTypeHanlder}>Close</button>
+            <button className={styles.button} type="submit">
+              Edit
+            </button>
+            <button
+              className={styles.button}
+              onClick={editInsuranceTypeHanlder}
+            >
+              Close
+            </button>
           </div>
         </form>
       )}

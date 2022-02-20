@@ -53,7 +53,7 @@ export default function Policy() {
   return (
     <div className={styles.container}>
       <h1 className="text-3xl">Fullstack code challenge</h1>
-      <Table data={data} />
+      <Table allData={data} />
       <div className={styles.editForm}>
         <div>
           <CustomerForm />
