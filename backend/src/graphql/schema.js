@@ -2,19 +2,19 @@ const { gql } = require("apollo-server");
 
 export const typeDefs = gql`
   type Customer {
-    id: ID!
-    firstName: String!
-    lastName: String!
-    dateOfBirth: String!
-    slug: String!
+    id: ID
+    firstName: String
+    lastName: String
+    dateOfBirth: String
+    slug: String
   }
 
   type InsuranceType {
-    id: ID!
+    id: ID
     liability: Boolean
     household: Boolean
     health: Boolean
-    slug: String!
+    slug: String
   }
 
   type Status {
@@ -23,19 +23,40 @@ export const typeDefs = gql`
     cancelled: Boolean
     pending: Boolean
     droppedOut: Boolean
-    slug: String!
+    slug: String
   }
 
   type Policy {
-    id: ID!
+    id: ID
     customer: [Customer]
-    provider: String!
+    provider: String
     insuranceType: [InsuranceType]
     status: [Status]
-    policyNumber: String!
-    startDate: String!
-    endDate: String!
-    createdAt: String!
+    policyNumber: String
+    startDate: String
+    endDate: String
+    createdAt: String
+  }
+
+  type Album {
+    id: ID
+    name: String
+  }
+
+  input AlbumsInputFilter {
+    id: ID
+    name: String
+  }
+
+  input PolicyInputFilter {
+    customer: String
+    provider: String
+    insuranceType: String
+    status: String
+    policyNumber: String
+    startDate: String
+    endDate: String
+    createdAt: String
   }
 
   type Query {
@@ -43,6 +64,9 @@ export const typeDefs = gql`
     insuranceType: [InsuranceType]
     customers: [Customer]
     status: [Status]
+    albums: [Album]
+    albumFilter(input: AlbumsInputFilter): [Album]
+    policyFilter(input: PolicyInputFilter): [Policy]
   }
 
   type Mutation {

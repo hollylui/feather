@@ -9,13 +9,14 @@ import { policy } from "./database/policy";
 import { insuranceType } from "./database/insuranceType";
 import { customers } from "./database/customers";
 import { status } from "./database/status";
+import { albums } from "./database/albums";
 
 // ----------------------------------------------------------
 
 const server = new ApolloServer({
   typeDefs,
   resolvers: { Query, Mutation },
-  context: { policy, insuranceType, customers, status },
+  context: { policy, insuranceType, customers, status, albums },
 });
 
 server.listen().then(({ url }) => {
