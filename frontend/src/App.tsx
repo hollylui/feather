@@ -9,6 +9,7 @@ import Navbar from "./components/navbar/Navbar";
 
 //! Style
 import "./index.css";
+import Login from "./views/login/Login";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -22,6 +23,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/policy" element={<Policy />} />
         </Routes>
       </BrowserRouter>
