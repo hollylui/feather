@@ -1,9 +1,6 @@
 //! from Liabry
 import { useEffect, useState } from "react";
 
-//! Styles
-import styles from "./Table.module.css";
-
 let tableElement: any;
 let newData: any;
 let ascValue: any;
@@ -119,18 +116,29 @@ export default function Table({ allData }: any) {
   }, [skip]);
 
   //styles
-  const thStyles = "py-3 px-6 text-left font-bold tracking-wider uppercase";
-  const tdStyles = "py-3 px-6 text-left font-medium tracking-wider align-top";
-  const searchBtnSyltes = "tracking-wider uppercase font-bold mx-2";
+  const containerStyles = `m-auto w-1160`;
+  const controlBtnStyles = "flex justify-between w-full mt-1 mb-3";
+  const searchInputStyles = "bg-yellow-400 rounded-md h-30";
+  const thStyles =
+    "py-3 px-3 text-left font-bold tracking-wider uppercase text-xl align-top cursor-pointer";
+  const tdStyles = "py-3 px-3 text-left font-medium tracking-wider align-top ";
+  const searchBtnSyltes = "tracking-wider uppercase font-bold mx-2 text-3xl";
   const paginationBtnStyles =
-    "font-bold tracking-wider uppercase bg-yellow-400 mx-3 py-1 px-3 w-30";
+    "font-bold tracking-wider uppercase bg-yellow-400 ml-3 py-1 px-3 w-30 text-2xl";
+
+  const textIndent = { textIndent: "8px" };
 
   return (
-    <div className={`m-auto ${styles.container}`}>
-      <div className={styles.controlBtns}>
-        <span>
+    <div className={containerStyles}>
+      <div className={controlBtnStyles}>
+        <span className="flex items-center">
           <label className={searchBtnSyltes}>Search</label>
-          <input type="text" onChange={filterPolicyHandler} />
+          <input
+            style={textIndent}
+            className={searchInputStyles}
+            type="text"
+            onChange={filterPolicyHandler}
+          />
         </span>
         <span>
           {skip !== 0 && (
@@ -154,9 +162,9 @@ export default function Table({ allData }: any) {
 
       <table
         id="table"
-        className="m-auto  bg-yellow-400 rounded-2xl table-sortable"
+        className="m-auto  bg-yellow-300 rounded-2xl table-sortable"
       >
-        <thead className="bg-yellow-200 dark:bg-gray-700l">
+        <thead className="bg-white dark:bg-gray-700l rounded-md">
           <tr>
             <th onClick={() => sortHandler(0)} className={thStyles}>
               Customer
@@ -187,7 +195,7 @@ export default function Table({ allData }: any) {
         <tbody>
           {newData.map((info: any, index: any) => {
             return (
-              <tr key={index}>
+              <tr className=" hover:bg-gray-300" key={index}>
                 {/* customer info ------------------------------------*/}
                 <td className={tdStyles}>
                   {info.customer[0].firstName} {info.customer[0].lastName}

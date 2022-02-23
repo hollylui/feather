@@ -2,9 +2,6 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 
-//! Styles
-import styles from "./CustomerForm.module.css";
-
 const EDIT_CUSTOMER = gql`
   mutation ($slug: String!, $firstName: String!, $lastName: String!) {
     editCustomer(slug: $slug, firstName: $firstName, lastName: $lastName) {
@@ -41,25 +38,65 @@ export default function CustomerForm() {
 
     setCustomerForm(!customerForm);
   };
+
+  // Styles ----------------------------------------------
+  const containerStyle = "w-60 bg-yellow-400 rounded-lg pt-2 pb-1";
+  const labelStyles = "text-left mb-1 font-bold";
+  const inputStyles = "bg-white rounded-md mb-2 p-0.5";
+  const buttonStyles =
+    "w-16 bg-yellow-200 rounded-xl m-1 hover:bg-yellow-500 hover:text-white font-bold";
+  const editBtnStyles =
+    "w-full m-auto bg-yellow-400 uppercase font-bold hover:text-white ";
+  const buttonsStyles = "flex justify-center mt-1 mb-1";
+  const formStyles = "flex flex-col pr-2 px-2";
+  const textIndent = { textIndent: "8px" };
+
   return (
-    <div className={styles.container}>
+    <div className={containerStyle}>
       {customerForm && (
-        <form onSubmit={customerSubmitHandler} className={styles.form}>
-          <label htmlFor="slug">Policy Number</label>
-          <input type="text" id="slug" name="slug" required />
+        <form className={formStyles} onSubmit={customerSubmitHandler}>
+          <label className={labelStyles} htmlFor="slug">
+            Policy Number
+          </label>
+          <input
+            style={textIndent}
+            className={inputStyles}
+            type="text"
+            id="slug"
+            name="slug"
+            required
+          />
 
-          <label htmlFor="fname">New First Name</label>
-          <input type="text" id="newFirstName" name="newFirstName" required />
+          <label className={labelStyles} htmlFor="fname">
+            New First Name
+          </label>
+          <input
+            style={textIndent}
+            className={inputStyles}
+            type="text"
+            id="newFirstName"
+            name="newFirstName"
+            required
+          />
 
-          <label htmlFor="lname">New Last Name</label>
-          <input type="text" id="newLastNname" name="newLastNname" required />
+          <label className={labelStyles} htmlFor="lname">
+            New Last Name
+          </label>
+          <input
+            style={textIndent}
+            className={inputStyles}
+            type="text"
+            id="newLastNname"
+            name="newLastNname"
+            required
+          />
 
-          <div className={styles.buttons}>
-            <button className={styles.button} type="submit">
+          <div className={buttonsStyles}>
+            <button className={buttonStyles} type="submit">
               Edit
             </button>
 
-            <button className={styles.button} onClick={editCustomerHanlder}>
+            <button className={buttonStyles} onClick={editCustomerHanlder}>
               Close
             </button>
           </div>
@@ -67,7 +104,7 @@ export default function CustomerForm() {
       )}
 
       {!customerForm && (
-        <button className={styles.edit} onClick={editCustomerHanlder}>
+        <button className={editBtnStyles} onClick={editCustomerHanlder}>
           Edit Customer Info
         </button>
       )}

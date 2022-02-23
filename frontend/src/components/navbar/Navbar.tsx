@@ -2,10 +2,12 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const navStyles =
+    "bg-black text-white h-10 flex items-center justify-end fixed w-full font-mono";
   const linkStyles = "mr-5 hover:text-yellow-300";
 
   return (
-    <nav className="bg-black text-white h-10 flex items-center justify-end">
+    <nav className={navStyles}>
       <Link className={linkStyles} to="/">
         Home
       </Link>

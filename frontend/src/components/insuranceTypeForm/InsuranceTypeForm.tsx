@@ -2,11 +2,6 @@
 import { useMutation, gql } from "@apollo/client";
 import { useState } from "react";
 
-//! From local
-
-//! Styles
-import styles from "./InsuranceTypeForm.module.css";
-
 const EDIT_INSURANCE_TYPE = gql`
   mutation (
     $slug: String!
@@ -57,29 +52,66 @@ export default function InsuranceTypeForm() {
     });
     setInsuranceForm(!insuranceForm);
   };
-  return (
-    <div className={styles.container}>
-      {insuranceForm && (
-        <form onSubmit={insuranceTypeSubmitHandler} className={styles.form}>
-          <label htmlFor="slug">Policy Number</label>
-          <input type="text" id="slug" name="slug" required />
 
-          <div className={styles.checkbox}>
-            <input type="checkbox" id="liability" name="liability" />
+  //Styles -----------------------------------------------------------
+  const containerStyle =
+    "flex flex-col w-72 bg-yellow-400 rounded-lg pt-2 pb-1 mx-5 ";
+  const labelStyles = "text-left mb-1 font-bold";
+  const inputStyles = "bg-white rounded-md mb-2 p-0.5";
+  const checkBoxesStyles = "flex items-center justify-center font-bold";
+  const checkBoxStyles = "mx-1 my-1";
+  const buttonStyles =
+    "w-16 bg-yellow-200 rounded-xl m-1 hover:bg-yellow-500 font-bold";
+  const editBtnStyles =
+    "w-full m-auto bg-yellow-400 uppercase font-bold hover:text-white ";
+  const buttonsStyles = "flex justify-center mt-1 mb-1";
+  const formStyles = "flex flex-col pr-2 px-2";
+  const textIndent = { textIndent: "8px" };
+
+  return (
+    <div className={containerStyle}>
+      {insuranceForm && (
+        <form className={formStyles} onSubmit={insuranceTypeSubmitHandler}>
+          <label className={labelStyles} htmlFor="slug">
+            Policy Number
+          </label>
+          <input
+            style={textIndent}
+            className={inputStyles}
+            type="text"
+            id="slug"
+            name="slug"
+            required
+          />
+
+          <div className={checkBoxesStyles}>
+            <input
+              className={checkBoxStyles}
+              type="checkbox"
+              id="liability"
+              name="liability"
+            />
             <label htmlFor="">Liability</label>
-            <input type="checkbox" id="household" name="household" />
+            <input
+              className={checkBoxStyles}
+              type="checkbox"
+              id="household"
+              name="household"
+            />
             <label htmlFor="">Household</label>
-            <input type="checkbox" id="health" name="health" />
+            <input
+              className={checkBoxStyles}
+              type="checkbox"
+              id="health"
+              name="health"
+            />
             <label htmlFor="">Health</label>
           </div>
-          <div className={styles.buttons}>
-            <button className={styles.button} type="submit">
+          <div className={buttonsStyles}>
+            <button className={buttonStyles} type="submit">
               Edit
             </button>
-            <button
-              className={styles.button}
-              onClick={editInsuranceTypeHanlder}
-            >
+            <button className={buttonStyles} onClick={editInsuranceTypeHanlder}>
               Close
             </button>
           </div>
@@ -87,7 +119,7 @@ export default function InsuranceTypeForm() {
       )}
 
       {!insuranceForm && (
-        <button className={styles.edit} onClick={editInsuranceTypeHanlder}>
+        <button className={editBtnStyles} onClick={editInsuranceTypeHanlder}>
           Edit Insurance Type
         </button>
       )}
