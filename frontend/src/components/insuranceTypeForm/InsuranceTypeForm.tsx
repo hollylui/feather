@@ -72,6 +72,7 @@ export default function InsuranceTypeForm() {
     <div className={containerStyle}>
       {insuranceForm && (
         <form className={formStyles} onSubmit={insuranceTypeSubmitHandler}>
+          {/* policy number -------------------------------------*/}
           <label className={labelStyles} htmlFor="slug">
             Policy Number
           </label>
@@ -84,6 +85,7 @@ export default function InsuranceTypeForm() {
             required
           />
 
+          {/* check box -------------------------------------*/}
           <div className={checkBoxesStyles}>
             <input
               className={checkBoxStyles}
@@ -107,6 +109,8 @@ export default function InsuranceTypeForm() {
             />
             <label htmlFor="">Health</label>
           </div>
+
+          {/* buttons ------------------------------------- */}
           <div className={buttonsStyles}>
             <button className={buttonStyles} type="submit">
               Edit
@@ -118,6 +122,7 @@ export default function InsuranceTypeForm() {
         </form>
       )}
 
+      {/* Open the edit form ------------------------------ */}
       {!insuranceForm && (
         <button className={editBtnStyles} onClick={editInsuranceTypeHanlder}>
           Edit Insurance Type

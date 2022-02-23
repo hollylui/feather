@@ -106,16 +106,14 @@ export default function Table({ allData }: any) {
     newData = allData.policy.filter((data: any) =>
       data.customer[0].firstName.toLowerCase().includes(search)
     );
-
-    // setData(newData);
-  }, [search]);
+  }, [search]); // setData(newData);
 
   useEffect(() => {
     tableElement = document.getElementById("table");
     newData = allData.policy.slice(skip, skip + 4);
   }, [skip]);
 
-  //styles
+  // Styles ----------------------------------------------
   const containerStyles = `m-auto w-1160`;
   const controlBtnStyles = "flex justify-between w-full mt-1 mb-3";
   const searchInputStyles = "bg-yellow-400 rounded-md h-30";
@@ -132,6 +130,7 @@ export default function Table({ allData }: any) {
     <div className={containerStyles}>
       <div className={controlBtnStyles}>
         <span className="flex items-center">
+          {/* Search buttons */}
           <label className={searchBtnSyltes}>Search</label>
           <input
             style={textIndent}
@@ -140,6 +139,8 @@ export default function Table({ allData }: any) {
             onChange={filterPolicyHandler}
           />
         </span>
+
+        {/* Previous and Next buttons */}
         <span>
           {skip !== 0 && (
             <button
@@ -160,6 +161,7 @@ export default function Table({ allData }: any) {
         </span>
       </div>
 
+      {/* Insurance Table */}
       <table
         id="table"
         className="m-auto  bg-yellow-300 rounded-2xl table-sortable"

@@ -2,6 +2,7 @@
 import loginImage from "../../assest/images/login/loginImage.png";
 
 export default function Login() {
+  //Styles ---------------------------------------------------
   const containerStyles =
     "h-screen flex flex-col  items-center bg-yellow-200 font-mono";
   const h1Styles =

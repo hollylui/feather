@@ -55,6 +55,7 @@ export default function CustomerForm() {
     <div className={containerStyle}>
       {customerForm && (
         <form className={formStyles} onSubmit={customerSubmitHandler}>
+          {/* policy number ------------------------------ */}
           <label className={labelStyles} htmlFor="slug">
             Policy Number
           </label>
@@ -67,6 +68,7 @@ export default function CustomerForm() {
             required
           />
 
+          {/* First name ------------------------------- */}
           <label className={labelStyles} htmlFor="fname">
             New First Name
           </label>
@@ -79,6 +81,7 @@ export default function CustomerForm() {
             required
           />
 
+          {/* last name -------------------------------  */}
           <label className={labelStyles} htmlFor="lname">
             New Last Name
           </label>
@@ -91,6 +94,7 @@ export default function CustomerForm() {
             required
           />
 
+          {/* edit and close buttons -------------------------------  */}
           <div className={buttonsStyles}>
             <button className={buttonStyles} type="submit">
               Edit
@@ -103,6 +107,7 @@ export default function CustomerForm() {
         </form>
       )}
 
+      {/* open edit form button -------------------------------  */}
       {!customerForm && (
         <button className={editBtnStyles} onClick={editCustomerHanlder}>
           Edit Customer Info

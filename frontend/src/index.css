@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-  overflow: hidden;
-} */
-
 @layer utilities {
   .w-1160 {
     width: 1160px;
